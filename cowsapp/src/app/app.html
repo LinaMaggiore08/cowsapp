@@ -1,0 +1,52 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title() }}
+  </h1>
+</div>
+
+<div>
+  <nav class="navbar navbar-expand-lg bg-light p-0">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Cows</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" role="presentation"><a class="nav-link" href="https://www.gcu.edu" target="_blank">GCU
+              Home Page</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/manage-cows">CRUD Operations</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/all-cows">All Cows</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/browse-breeds">Browse by Breed</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/search-cows">Search Cows</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" routerLink="/create">Create Cow</a></li>
+          <li class="nav-item"><a class="nav-link" href="" (click)="displayVersion()">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<router-outlet />

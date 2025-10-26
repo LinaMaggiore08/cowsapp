@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <h2>Search Cows</h2>
+
+  <div class="search-form mb-4">
+    <div class="row">
+      <div class="col-md-4">
+        <select class="form-control" [(ngModel)]="searchType" name="searchType">
+          <option value="breed">Search by Breed</option>
+          <option value="health_status">Search by Health Status</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="searchTerm"
+               name="searchTerm"
+               [placeholder]="searchType === 'breed' ? 'Enter breed (e.g., Holstein)' : 'Enter health status (e.g., Healthy)'"
+               (keyup.enter)="onSearch()">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" (click)="onSearch()" [disabled]="!searchTerm.trim()">
+          Search
+        </button>
+      </div>
+    </div>
+    <div class="row mt-2" *ngIf="hasSearched">
+      <div class="col-md-12">
+        <button class="btn btn-secondary btn-sm" (click)="clearSearch()">
+          Clear Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p>Searching cows...</p>
+  </div>
+
+  <div *ngIf="!loading && hasSearched && selectedCow == null">
+    <div *ngIf="cows.length === 0" class="alert alert-info">
+      No cows found matching your search for "{{ searchTerm }}" in {{ searchType === 'breed' ? 'breed' : 'health status' }}.
+    </div>
+
+    <div *ngIf="cows.length > 0">
+      <p>Found {{ cows.length }} cow(s) matching "{{ searchTerm }}" in {{ searchType === 'breed' ? 'breed' : 'health status' }}:</p>
+      <div class="list-group">
+        <button class="list-group-item list-group-item-action"
+          *ngFor="let cow of cows"
+          (click)="onSelectCow(cow)">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ cow.name }}</h5>
+            <small>ID: {{ cow.id }}</small>
+          </div>
+          <p class="mb-1">Breed: {{ cow.breed }} | Age: {{ cow.age }} years</p>
+          <small>Health: {{ cow.health_status }} | Milk Production: {{ cow.milk_production }} liters/day</small>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCow">
+    <button class="btn btn-secondary mb-3" (click)="goBack()">← Back to Search Results</button>
+    <app-display-cow [cow]="selectedCow"></app-display-cow>
+  </div>
+
+  <div *ngIf="!hasSearched" class="alert alert-info">
+    <h4>Search Instructions:</h4>
+    <ul>
+      <li><strong>Breed Search:</strong> Find cows by breed (e.g., "Holstein", "Jersey", "Angus")</li>
+      <li><strong>Health Status Search:</strong> Find cows by health condition (e.g., "Healthy", "Excellent", "Good")</li>
+    </ul>
+    <p>The search uses partial matching, so you can search for part of a word.</p>
+  </div>
+</div>

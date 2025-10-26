@@ -1,0 +1,11 @@
+<div class="list-group" *ngIf="selectedFarm == null">
+  <button class="list-group-item" active
+    *ngFor="let farm of farms"
+    (click)="onSelectFarm(farm)">
+    {{ farm.farm }}
+  </button>
+</div>
+
+<div *ngIf="selectedFarm">
+<app-list-cows [farm]="selectedFarm!"></app-list-cows>
+</div>

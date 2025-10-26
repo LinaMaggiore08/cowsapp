@@ -1,0 +1,14 @@
+<div class="list-group" *ngIf="selectedCow == null">
+  <button class="list-group-item" active
+    *ngFor="let cow of cows"
+    (click)="onSelectCow(cow)">
+    <table align="center">
+      <tr>
+        <td width="20%">🐄</td>
+        <td>{{ cow.name }} - {{ cow.breed }} (Age: {{ cow.age }})</td>
+      </tr>
+    </table>
+  </button>
+</div>
+
+<app-display-cow *ngIf="selectedCow" [cow]="selectedCow"></app-display-cow>

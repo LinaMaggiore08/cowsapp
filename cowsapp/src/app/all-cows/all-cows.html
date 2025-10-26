@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <h2>All Cows from API</h2>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p>Loading cows from API...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+    <button class="btn btn-primary ml-2" (click)="loadCows()">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error && selectedCow == null">
+    <div *ngIf="cows.length === 0" class="alert alert-info">
+      No cows found in the database.
+    </div>
+
+    <div *ngIf="cows.length > 0">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <p>Found {{ cows.length }} cows in the database:</p>
+        <div>
+          <button class="btn btn-outline-secondary mr-2" (click)="refreshCows()" title="Refresh List">
+            <i class="fa fa-refresh"></i> Refresh
+          </button>
+          <a [routerLink]="['/create']" class="btn btn-success">
+            <i class="fa fa-plus"></i> Add New Cow
+          </a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Breed</th>
+              <th>Age</th>
+              <th>Health Status</th>
+              <th>Milk Production</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cow of cows">
+              <td>{{ cow.id }}</td>
+              <td>
+                <strong>{{ cow.name }}</strong>
+              </td>
+              <td>{{ cow.breed }}</td>
+              <td>{{ cow.age }} years</td>
+              <td>
+                <span class="badge"
+                      [class.badge-success]="cow.health_status === 'Excellent' || cow.health_status === 'Healthy'"
+                      [class.badge-warning]="cow.health_status === 'Good'"
+                      [class.badge-danger]="cow.health_status === 'Poor' || cow.health_status === 'Under observation'">
+                  {{ cow.health_status }}
+                </span>
+              </td>
+              <td>{{ cow.milk_production }} L/day</td>
+              <td>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-info btn-sm" (click)="onSelectCow(cow)" title="View Details">
+                    <i class="fa fa-eye"></i>
+                  </button>
+                  <a [routerLink]="['/edit', cow.id]" class="btn btn-warning btn-sm" title="Edit Cow">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <a [routerLink]="['/delete', cow.id]" class="btn btn-danger btn-sm" title="Delete Cow">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedCow">
+    <button class="btn btn-secondary mb-3" (click)="goBack()">← Back to List</button>
+    <app-display-cow [cow]="selectedCow"></app-display-cow>
+  </div>
+</div>

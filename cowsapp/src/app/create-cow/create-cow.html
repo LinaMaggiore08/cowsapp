@@ -1,0 +1,39 @@
+<div align="center" style="margin-left:50px;margin-right:50px" *ngIf="!wasSubmitted">
+<p>{{ cow.name }}</p>
+<form (ngSubmit)="onSubmit()" #createForm="ngForm">
+    <div class="form-group">
+      <label for="name">Cow Name</label>
+      <input id="name" type="text" class="form-control" aria-describedby="helpName" placeholder="Enter the name of the Cow" required [(ngModel)]="cow.name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="breed">Breed</label>
+        <input id="breed" type="text" class="form-control" aria-describedby="helpBreed" placeholder="Enter the breed of the Cow" required [(ngModel)]="cow.breed" name="breed">
+      </div>
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input id="age" type="number" class="form-control" aria-describedby="helpAge" placeholder="Enter the age of the Cow" required [(ngModel)]="cow.age" name="age">
+     </div>
+    <div class="form-group">
+        <label for="health_status">Health Status</label>
+        <input id="health_status" type="text" class="form-control" aria-describedby="helpHealthStatus" placeholder="Enter the health status of the Cow" required [(ngModel)]="cow.health_status" name="health_status">
+    </div>
+    <div class="form-group">
+        <label for="birth_date">Birth Date</label>
+        <input id="birth_date" type="date" class="form-control" aria-describedby="helpBirthDate" placeholder="Enter the birth date of the Cow" [(ngModel)]="cow.birth_date" name="birth_date">
+    </div>
+    <div class="form-group">
+        <label for="milk_production">Milk Production</label>
+        <input id="milk_production" type="number" step="0.01" class="form-control" aria-describedby="helpMilkProduction" placeholder="Enter the milk production of the Cow" [(ngModel)]="cow.milk_production" name="milk_production">
+    </div>
+    <div class="form-group">
+        <label for="characteristics">Characteristics</label>
+        <textarea id="characteristics" rows="3" class="form-control" aria-describedby="helpCharacteristics" placeholder="Enter each characteristic followed by a return key for the Cow" [(ngModel)]="characteristicsRaw" name="characteristics"></textarea>
+     </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+</div>
+<div  *ngIf="wasSubmitted">
+  Cow was added successfully.
+</div>

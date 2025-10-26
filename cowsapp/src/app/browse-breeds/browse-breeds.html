@@ -1,0 +1,73 @@
+<div class="container mt-4">
+  <h2>Browse Cows by Breed</h2>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <p>Loading breeds...</p>
+  </div>
+
+  <!-- Breed Selection -->
+  <div *ngIf="!loading && !selectedBreed" class="breeds-grid">
+    <h3>Available Breeds ({{ availableBreeds.length }})</h3>
+    <div class="row">
+      <div class="col-md-4 col-sm-6 mb-3" *ngFor="let breed of availableBreeds">
+        <div class="card breed-card h-100" (click)="onSelectBreed(breed)">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ breed }}</h5>
+            <p class="card-text">
+              {{ getBreedCount(breed) }} cow(s)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cows of Selected Breed -->
+  <div *ngIf="selectedBreed && !selectedCow" class="breed-cows">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>{{ selectedBreed }} Cows</h3>
+      <button class="btn btn-secondary" (click)="goBackToBreeds()">← Back to Breeds</button>
+    </div>
+
+    <div *ngIf="loading" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p>Loading {{ selectedBreed }} cows...</p>
+    </div>
+
+    <div *ngIf="!loading">
+      <div *ngIf="cowsOfBreed.length === 0" class="alert alert-info">
+        No {{ selectedBreed }} cows found.
+      </div>
+
+      <div *ngIf="cowsOfBreed.length > 0">
+        <p>Found {{ cowsOfBreed.length }} {{ selectedBreed }} cow(s):</p>
+        <div class="list-group">
+          <button class="list-group-item list-group-item-action"
+            *ngFor="let cow of cowsOfBreed"
+            (click)="onSelectCow(cow)">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ cow.name }}</h5>
+              <small>ID: {{ cow.id }}</small>
+            </div>
+            <p class="mb-1">Age: {{ cow.age }} years | Birth Date: {{ cow.birth_date | date:'shortDate' }}</p>
+            <small>Health: {{ cow.health_status }} | Milk Production: {{ cow.milk_production }} liters/day</small>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selected Cow Details -->
+  <div *ngIf="selectedCow">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3>{{ selectedCow.name }} Details</h3>
+      <button class="btn btn-secondary" (click)="goBackToCows()">← Back to {{ selectedBreed }} Cows</button>
+    </div>
+    <app-display-cow [cow]="selectedCow"></app-display-cow>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Bessie",
+    "breed": "Holstein",
+    "age": 4,
+    "health_status": "Healthy",
+    "birth_date": "2020-03-15",
+    "milk_production": 25.5
+  },
+  {
+    "id": 2,
+    "name": "Daisy",
+    "breed": "Jersey",
+    "age": 3,
+    "health_status": "Healthy",
+    "birth_date": "2021-06-22",
+    "milk_production": 18.2
+  },
+  {
+    "id": 3,
+    "name": "Moo-nificent",
+    "breed": "Guernsey",
+    "age": 5,
+    "health_status": "Under observation",
+    "birth_date": "2019-08-10",
+    "milk_production": 22.8
+  }
+]

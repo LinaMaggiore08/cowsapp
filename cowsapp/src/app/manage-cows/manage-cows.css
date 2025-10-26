@@ -1,0 +1,28 @@
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-group-vertical .btn {
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+code {
+  background-color: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.875em;
+}
+
+.lead {
+  color: #6c757d;
+}

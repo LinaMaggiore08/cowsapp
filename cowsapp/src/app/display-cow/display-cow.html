@@ -1,0 +1,45 @@
+<div align="center">
+  <div class="card mb-6" style="max-width: 500px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <div style="height:150px; width:150px; overflow: hidden;"></div>
+        <div style="font-size: 72px;">🐄</div>
+      </div>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ cow!.name }}</h5>
+          <p class="card-text">Breed: {{ cow!.breed }}</p>
+          <p class="card-text">Age: {{ cow!.age }} years</p>
+          <p class="card-text">Health Status: {{ cow!.health_status }}</p>
+          <p class="card-text">Birth Date: {{ cow!.birth_date }}</p>
+          <p class="card-text">Milk Production: {{ cow!.milk_production }} liters/day</p>
+          <table>
+            <tr>
+              <td width="50px" align="center">
+                <a href="#" data-toggle="collapse" data-target="collapseCharacteristics" aria-expanded="false" aria-controls="collapseCharacteristics"><i class="fa fa-list"></i></a>
+              </td>
+              <td width="50px" align="center">
+                <a [routerLink]="['/edit', cow!.id]" class="btn btn-warning btn-sm" title="Edit Cow">
+                  <i class="fa fa-edit"></i> Edit
+                </a>
+              </td>
+              <td width="50px" align="center">
+                <a [routerLink]="['/delete', cow!.id]" class="btn btn-danger btn-sm" title="Delete Cow">
+                  <i class="fa fa-trash"></i> Delete
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="collapse" id="collapseCharacteristics" style="margin-left:50px;margin-right:50px">
+  <div class="card card-body">
+    <ul class="list-group-flush">
+      <li class="list-group-item">Additional characteristics would be displayed here</li>
+    </ul>
+  </div>
+</div>
